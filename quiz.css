@@ -66,52 +66,48 @@ body{
             
             }
         }
-        
-        h1{
-            background-color: rgb(255, 210, 0);
-            color: rgb(0, 136, 81);
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 53px;
-            margin: none;
-        }    
-        .answersContainer
-            
-            div{
-                background-color: white;
-                border-left: solid rgb(0, 136, 81) 12.5px;
-                border-right: solid rgb(0, 136, 81) 12.5px ;
-                margin-top: 40px;
-                padding: 20px;
-
-                h2{
-                    color: black;
-                    font-family: Arial, Helvetica, sans-serif;
-                }
-
-                label{
-                    color: black;
-                    font-family: Georgia, 'Times New Roman', Times, serif;
-                }
-                
-            }
+    
+        #quiz{
+            background-color: white;
+            color: black;
+            font-size: x-large;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            padding: 4%;
         }
-    }
 
-    .btnContainer{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 4%;
-        
-        .quizButton{
+
+        #nextBtn{
             background-color: rgb(255, 210, 0);
             border-color: rgb(255, 210, 0);
-            border-width: 6px;
             padding: 20px;
-            width: 1125px;
+            border-width: 6px;
+            margin-top: 40px;
             font-weight: bold;
-            font-size: 20px;
+            width: 200px;
+        }
 
+
+        #submitBtn{
+            background-color: rgb(255, 210, 0);
+            border-color: rgb(255, 210, 0);
+            padding: 20px;
+            border-width: 6px;
+            margin-top: 40px;
+            font-weight: bold;
+            width: 200px;
+        }
+
+        #reDoBtn{
+            background-color: rgb(255, 210, 0);
+            border-color: rgb(255, 210, 0);
+            padding: 20px;
+            border-width: 6px;
+            margin-top: 40px;
+            font-weight: bold;
+            width: 200px;
         }
     }
+
+
+
 }
