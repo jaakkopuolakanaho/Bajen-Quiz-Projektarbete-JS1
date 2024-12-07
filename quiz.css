@@ -7,10 +7,10 @@ body{
     
     background-color: var(--color-bg);
     color: var(--color-fg);
-    
+
     .quizContainer{
         background-color: white;
-
+        
         background-image:
         linear-gradient(45deg, rgb(0, 136, 81) 25%, transparent 25%), 
         linear-gradient(135deg, rgb(0, 136, 81) 25%, transparent 25%),
@@ -26,11 +26,19 @@ body{
             top: 40px;
             
             .imgContainer{
+
                 
                 img{
                     width: 1000px;
                     object-fit: contain;
                     border: solid rgb(0, 136, 81) 12.5px;
+                    
+                    @media(max-width: 768px)
+                    {
+                        width: 100%;
+                        object-fit: contain;
+                        border: none;
+                    }
                 }
                 
                 .toggleBtn{
@@ -42,6 +50,14 @@ body{
                     top: 90px;
                     right: 260px;
                     font-weight: bold;
+
+                    @media(max-width: 768px)
+                    {
+                        top: 0px;
+                        right: 0px;
+                        padding: 10px;
+                        border: none;
+                    }
                 }
             }
         }
@@ -52,7 +68,13 @@ body{
             border: solid rgb(0, 136, 81) 12.5px;
             font-size: x-large;
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            padding: 4%;
+            padding: 40px;
+
+            @media(max-width: 768px)
+            {
+                border: none;
+            }
+
         }
         
         #answerButton{
@@ -63,6 +85,7 @@ body{
             margin-top: 40px;
             font-weight: bold;
             width: 200px;
+
         }
         
         #redoButton{
@@ -73,6 +96,11 @@ body{
             margin-top: 40px;
             font-weight: bold;
             width: 200px;
+
+            @media(max-width: 768px)
+            {
+                margin-top: 5px;
+            }
         }
     }
 }

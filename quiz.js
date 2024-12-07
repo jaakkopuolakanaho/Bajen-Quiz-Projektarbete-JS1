@@ -160,18 +160,18 @@ answerBtn.addEventListener('click', () => {
         let question = quizArray[questionIndex];
 
         if (question && question.answers) {
-            if (question.type === "radio") {
-                let selectedOption = question.answers.find(answer => answer.option === selectedAnswers[0].value);
-                let isCorrect = selectedOption ? selectedOption.correct : false;
-                
-                answersArray.push({ answer: selectedAnswers[0].value, isCorrect: isCorrect });
-            } else if (question.type === "checkbox") {
+            const checkAnswers = (selectedAnswers) => {
                 selectedAnswers.forEach(selectedAnswer => {
                     let selectedOption = question.answers.find(answer => answer.option === selectedAnswer.value);
                     let isCorrect = selectedOption ? selectedOption.correct : false;
-                    
                     answersArray.push({ answer: selectedAnswer.value, isCorrect: isCorrect });
                 });
+            };
+
+            if (question.type === "radio") {
+                checkAnswers([selectedAnswers[0]]);
+            } else if (question.type === "checkbox") {
+                checkAnswers(selectedAnswers);
             }
         }
 
