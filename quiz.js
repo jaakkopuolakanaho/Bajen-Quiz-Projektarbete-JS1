@@ -160,11 +160,11 @@ answerBtn.addEventListener('click', () => {
         let question = quizArray[questionIndex];
 
         if (question && question.answers) {
-            const checkAnswers = (selectedAnswers) => {
+            let checkAnswers = (selectedAnswers) => {
                 selectedAnswers.forEach(selectedAnswer => {
                     let selectedOption = question.answers.find(answer => answer.option === selectedAnswer.value);
                     let isCorrect = selectedOption ? selectedOption.correct : false;
-                    answersArray.push({ answer: selectedAnswer.value, isCorrect: isCorrect });
+                    answersArray.push({questionIndex: questionIndex, answer: selectedAnswer.value, isCorrect: isCorrect});
                 });
             };
 
@@ -198,31 +198,26 @@ let results = () => {
     const correctAnswers = answersArray.filter(answer => answer.isCorrect).length;
     const allAnswers = answersArray.length;
     const percentage = (correctAnswers / allAnswers) * 100;
-    
+
     const resultOl = document.createElement("ol");
     optionsDiv.append(resultOl);
 
     quizArray.forEach((question, index) => {
         const resultLi = document.createElement("li");
-    
-        const listResult = answersArray.filter(answer => 
-            question.answers.some(qAnswer => qAnswer.option === answer.answer)
-        );
-    
+
+        const selectedAnswers = answersArray.filter(answer => answer.questionIndex === index);
+
         if (question.type === "checkbox") {
-            const selectedAnswers = listResult.map(answer => 
-                `${answer.answer}: ${answer.isCorrect ? "Rätt!" : "Fel!"}`).join(", ");
-            resultLi.textContent = selectedAnswers;
+            let selectedAnswersText = selectedAnswers.map(answer => `${answer.answer}: ${answer.isCorrect ? "Rätt!" : "Fel!"}`).join(", ");
+            resultLi.textContent = selectedAnswersText;
         } else {
-            const selectedAnswer = listResult[0];
-            if (selectedAnswer) {
-                resultLi.textContent = `${selectedAnswer.answer}: ${selectedAnswer.isCorrect ? "Rätt!" : "Fel!"}`;
-            }
+            let selectedAnswer = selectedAnswers[0];
+            resultLi.textContent = `${selectedAnswer.answer}: ${selectedAnswer.isCorrect ? "Rätt!" : "Fel!"}`;
         }
-    
+
         resultOl.append(resultLi);
     });
-    
+
     if (percentage >= 75) {
         questionDiv.innerHTML += "<p style='display: inline; background: white; color: rgb(0, 136, 81); font-weight: bold;'>Riktigt bra jobbat kisen! Äkta bajare!</p>";
     } else if (percentage >= 50 && percentage < 75) {
@@ -231,6 +226,7 @@ let results = () => {
         questionDiv.innerHTML += "<p style='display: inline; background: white; color: red; font-weight: bold;'>Underkänt! Eru gårdare? Bäst du tar o jonnar härifrån va.</p>";
     }
 };
+
 
 // Starta om quiz Function
 reDoBtn.addEventListener("click", () => {
