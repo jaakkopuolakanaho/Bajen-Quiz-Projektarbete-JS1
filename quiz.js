@@ -105,6 +105,7 @@ function toggleBackgroundBtn() {
 // Variables
 let questionIndex = 0;
 let answersArray = [];
+let holdPoints = 0;
 
 // HTML Elements
 const questionDiv = document.querySelector("#question");
@@ -155,19 +156,25 @@ let showQuestion = () => {
 //Rätta & pusha svar Function
 answerBtn.addEventListener('click', () => {
     let selectedAnswers = document.querySelectorAll("input[type='radio']:checked, input[type='checkbox']:checked");
-
+    
     if (selectedAnswers.length > 0) {
         let question = quizArray[questionIndex];
-
+        
         if (question && question.answers) {
             let checkAnswers = (selectedAnswers) => {
                 selectedAnswers.forEach(selectedAnswer => {
                     let selectedOption = question.answers.find(answer => answer.option === selectedAnswer.value);
                     let isCorrect = selectedOption ? selectedOption.correct : false;
                     answersArray.push({questionIndex: questionIndex, answer: selectedAnswer.value, isCorrect: isCorrect});
+                    
+                    if (isCorrect) {
+                        holdPoints++;
+                    }
+                    console.log(isCorrect)
+                    console.log(holdPoints)
                 });
             };
-
+            
             if (question.type === "radio") {
                 checkAnswers([selectedAnswers[0]]);
             } else if (question.type === "checkbox") {
@@ -218,15 +225,16 @@ let results = () => {
         resultOl.append(resultLi);
     });
 
+    questionDiv.innerHTML = `<p>Du fick ${holdPoints} poäng av ${allAnswers} möjliga!</p>`;
+
     if (percentage >= 75) {
-        questionDiv.innerHTML += "<p style='display: inline; background: white; color: rgb(0, 136, 81); font-weight: bold;'>Riktigt bra jobbat kisen! Äkta bajare!</p>";
+        questionDiv.innerHTML += "<p style='display: inline; background: white; color: rgb(0, 136, 81); font-weight: bold;'>Riktigt bra jobbat kisen! Du är en tvättäkta bajare!</p>";
     } else if (percentage >= 50 && percentage < 75) {
-        questionDiv.innerHTML += "<p style='display: inline; background: white; color: orange; font-weight: bold;'>Bra, du e nyinflyttad på Söder va?</p>";
+        questionDiv.innerHTML += "<p style='display: inline; background: white; color: orange; font-weight: bold;'>Bra försök, du e ny på Söder va?</p>";
     } else {
-        questionDiv.innerHTML += "<p style='display: inline; background: white; color: red; font-weight: bold;'>Underkänt! Eru gårdare? Bäst du tar o jonnar härifrån va.</p>";
+        questionDiv.innerHTML += "<p style='display: inline; background: white; color: red; font-weight: bold;'>Underkänt! Eru gårdare? De e nog bäst om du tar o jonnar härifrån va.</p>";
     }
 };
-
 
 // Starta om quiz Function
 reDoBtn.addEventListener("click", () => {
