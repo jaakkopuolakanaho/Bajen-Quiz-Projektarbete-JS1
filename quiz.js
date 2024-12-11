@@ -90,9 +90,9 @@ const body = document.querySelector("body");
 const main = document.querySelector("main");
 const toggleBtn = document.querySelector(".toggleBtn");
 
+let toggle = false;
 toggleBtn.addEventListener("click", toggleBackgroundBtn, false);
 
-let toggle = false;
 function toggleBackgroundBtn() {
   body.style.backgroundColor = toggle ? "white" : "rgb(0, 136, 81)";
   main.style.backgroundColor = toggle ? "white" : "rgb(0, 136, 81)";
