@@ -138,7 +138,7 @@ let showQuestion = () => {
             optionsDiv.append(document.createElement("br"));
         });
 
-        //This. Varnar för att välja mer är 2 alternativ.
+        //this.setCustomValidity Varnar för att välja mer är 2 alternativ.
         if (question.type === "checkbox") {
             document.querySelectorAll("input[type='checkbox']").forEach(el => {
                 el.addEventListener('change', function() {
@@ -146,7 +146,7 @@ let showQuestion = () => {
                         this.setCustomValidity('Du kan max välja två alternativ!');
                         this.checked = false;
                         this.reportValidity();
-                    }
+                    } 
                 });
             });
         }
@@ -170,8 +170,6 @@ answerBtn.addEventListener('click', () => {
                     if (isCorrect) {
                         holdPoints++;
                     }
-                    console.log(isCorrect)
-                    console.log(holdPoints)
                 });
             };
             
@@ -240,6 +238,7 @@ let results = () => {
 reDoBtn.addEventListener("click", () => {
     questionIndex = 0;
     answersArray = [];
+    holdPoints = 0;
     showQuestion();
 });
 

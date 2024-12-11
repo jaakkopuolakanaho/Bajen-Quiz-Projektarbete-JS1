@@ -16,11 +16,11 @@ body{
         background-size:25px 25px;
         background-position:0 0, 12.5px 0, 12.5px -12.5px, 0px 12.5px;
         
-        padding: 0px 50px 50px 50px;
+        padding: 0px 50px 49px 50px;
         
         header{
             position: sticky;
-            top: 37.5px;
+            top: 50px;
             
             .imgContainer{
 
@@ -73,29 +73,34 @@ body{
 
         }
         
-        #answerButton{
-            background-color: rgb(255, 210, 0);
-            border-color: rgb(255, 210, 0);
-            padding: 20px;
-            border-width: 6px;
-            margin-top: 40px;
-            font-weight: bold;
-            width: 200px;
+        #btnContainer{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
 
-        }
-        
-        #redoButton{
-            background-color: rgb(255, 210, 0);
-            border-color: rgb(255, 210, 0);
-            padding: 20px;
-            border-width: 6px;
-            margin-top: 40px;
-            font-weight: bold;
-            width: 200px;
+            #answerButton{
+                background-color: rgb(255, 210, 0);
+                border-color: rgb(255, 210, 0);
+                padding: 20px;
+                border-width: 6px;
+                margin-top: 40px;
+                font-weight: bold;
+                width: 200px;
+            }
+            
+            #redoButton{
+                background-color: rgb(255, 210, 0);
+                border-color: rgb(255, 210, 0);
+                padding: 20px;
+                border-width: 6px;
+                margin-top: 40px;
+                font-weight: bold;
+                width: 200px;
 
-            @media(max-width: 768px)
-            {
-                margin-top: 5px;
+                @media(max-width: 768px)
+                {
+                    margin-top: 5px;
+                }
             }
         }
     }
