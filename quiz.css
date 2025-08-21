@@ -18,7 +18,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 0 10vw; /* mer flexibel än fasta pixlar */
+    margin: 0 10vw; 
 }
 
 .quizContainer {
@@ -41,7 +41,7 @@ body {
 .quizContainer header {
     position: sticky;
     top: 50px;
-    position: relative; /* gör toggleBtn absolut-positionerad relativ till header */
+    position: relative; 
 }
 
 .imgContainer {
