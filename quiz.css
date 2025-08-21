@@ -1,107 +1,127 @@
-body{
-    background-color: rgb(255, 255, 255);
+:root {
+    --primary-color: rgb(0, 136, 81);
+    --accent-color: rgb(255, 210, 0);
+    --border-width: 12.5px;
+    --padding-main: 40px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fff;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    margin: 0px 200px 0px 200px;
+    flex-wrap: wrap;
+    margin: 0 10vw; /* mer flexibel än fasta pixlar */
+}
 
-    .quizContainer{
-        background-color: white;
-        
-        background-image:
-        linear-gradient(45deg, rgb(0, 136, 81) 25%, transparent 25%), 
-        linear-gradient(135deg, rgb(0, 136, 81) 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, rgb(0, 136, 81) 75%),
-        linear-gradient(135deg, transparent 75%, rgb(0, 136, 81) 75%);
-        background-size:25px 25px;
-        background-position:0 0, 12.5px 0, 12.5px -12.5px, 0px 12.5px;
-        
-        padding: 0px 50px 49px 50px;
-        
-        header{
-            position: sticky;
-            top: 50px;
-            
-            .imgContainer{
+.quizContainer {
+    display: inline-block;
+    text-align: left;
+    background-color: #fff;
+    max-width: 1000px;
+    width: 100%;
+    padding: 0 50px 49px 50px;
+    margin: 0 auto;
+    background-image:
+        linear-gradient(45deg, var(--primary-color) 25%, transparent 25%), 
+        linear-gradient(135deg, var(--primary-color) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, var(--primary-color) 75%),
+        linear-gradient(135deg, transparent 75%, var(--primary-color) 75%);
+    background-size: 25px 25px;
+    background-position: 0 0, 12.5px 0, 12.5px -12.5px, 0px 12.5px;
+}
 
-                img{
-                    width: 1000px;
-                    object-fit: contain;
-                    border: solid rgb(0, 136, 81) 12.5px;
-                    
-                    @media(max-width: 768px)
-                    {
-                        width: 100%;
-                        object-fit: contain;
-                        border: none;
-                    }
-                }
-                
-                .toggleBtn{
-                    background-color: rgb(255, 210, 0);
-                    border-color: rgb(255, 210, 0);
-                    padding: 20px;
-                    position: fixed;
-                    border-width: 6px;
-                    top: 90px;
-                    right: 260px;
-                    font-weight: bold;
+.quizContainer header {
+    position: sticky;
+    top: 50px;
+    position: relative; /* gör toggleBtn absolut-positionerad relativ till header */
+}
 
-                    @media(max-width: 768px)
-                    {
-                        top: 0px;
-                        right: 0px;
-                        padding: 10px;
-                        border: none;
-                    }
-                }
-            }
-        }
-        
-        main{
-            background-color: white;
-            color: rgb(0, 136, 81);
-            border: solid rgb(0, 136, 81) 12.5px;
-            font-size: x-large;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            padding: 40px;
+.imgContainer {
+    position: relative;
+}
 
-            @media(max-width: 768px)
-            {
-                border: none;
-            }
+.imgContainer img {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+    object-fit: contain;
+    border: solid var(--primary-color) var(--border-width);
+}
 
-        }
-        
-        #btnContainer{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+.imgContainer .toggleBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--accent-color);
+    border: solid var(--accent-color) 6px;
+    padding: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+}
 
-            #answerButton{
-                background-color: rgb(255, 210, 0);
-                border-color: rgb(255, 210, 0);
-                padding: 20px;
-                border-width: 6px;
-                margin-top: 40px;
-                font-weight: bold;
-                width: 200px;
-            }
-            
-            #redoButton{
-                background-color: rgb(255, 210, 0);
-                border-color: rgb(255, 210, 0);
-                padding: 20px;
-                border-width: 6px;
-                margin-top: 40px;
-                font-weight: bold;
-                width: 200px;
+.quizContainer main {
+    background-color: #fff;
+    color: var(--primary-color);
+    border: solid var(--primary-color) var(--border-width);
+    font-size: x-large;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: var(--padding-main);
+    margin-top: 20px;
+}
 
-                @media(max-width: 768px)
-                {
-                    margin-top: 5px;
-                }
-            }
-        }
+#btnContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+#answerButton,
+#redoButton {
+    background-color: var(--accent-color);
+    border: solid var(--accent-color) 6px;
+    padding: 20px;
+    font-weight: bold;
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#answerButton:hover,
+#redoButton:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    body {
+        margin: 0 5vw;
+    }
+
+    .imgContainer img {
+        border: none;
+    }
+
+    .imgContainer .toggleBtn {
+        top: 5px;
+        right: 5px;
+        padding: 10px;
+        border: none;
+    }
+
+    .quizContainer main {
+        border: none;
+        padding: 20px;
+    }
+
+    #redoButton {
+        margin-top: 5px;
     }
 }
